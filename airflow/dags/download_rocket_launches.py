@@ -30,12 +30,13 @@ def _get_pictures():
         None
     """
     # store target directory
-    TARGET_DIR = "/tmp/images/"
+    TARGET_DIR = os.path.join("tmp", "images")
+
     # ensure directory exists
     pathlib.Path(TARGET_DIR).mkdir(parents=True, exist_ok=True)
 
     # download all pictures in launches.json
-    with open("/tmp/launches/.json") as f:
+    with open("/tmp/launches.json") as f:
         # cast json into dictionary
         launches = json.load(f)
 
@@ -82,7 +83,7 @@ get_pictures = PythonOperator(
 # notify user about how many rocket images there now are for viewing
 notify = BashOperator(
     task_id="notify",
-    bash_command='echo "There are now $(ls /tmp/images/ | wc -l) images."',
+    bash_command='echo "There are now $(ls tmp/images/ | wc -l) images."',
     dag=download_rocket_launches,
 )
 
