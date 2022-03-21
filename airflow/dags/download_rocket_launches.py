@@ -69,7 +69,7 @@ download_rocket_launches = DAG(
 # apply bash command to download the URL response with curl
 download_launches = BashOperator(
     task_id="download_launches",
-    bash_command="curl -o /tmp/launches.json -L 'https://ll.thespacedevs.com/2.0.0/launch/upcoming'",
+    bash_command="curl -o ~/Documents/learning_airflow/tmp/launches.json -L 'https://ll.thespacedevs.com/2.0.0/launch/upcoming'",
     dag=download_rocket_launches,
 )
 
@@ -83,7 +83,7 @@ get_pictures = PythonOperator(
 # notify user about how many rocket images there now are for viewing
 notify = BashOperator(
     task_id="notify",
-    bash_command='echo "There are now $(ls tmp/images/ | wc -l) images."',
+    bash_command='echo "There are now $(ls ~/Documents/learning_airflow/tmp/images/ | wc -l) images."',
     dag=download_rocket_launches,
 )
 
