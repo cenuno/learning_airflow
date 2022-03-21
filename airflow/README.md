@@ -12,6 +12,9 @@ After installing Airflow, start it by:
     + NOTE: both of these bash commands will be constantly running so, after executing each command, you should open up a new Terminal tab so you can continue
 
 ```bash
+# make sure the virtual environment is activated
+source "./venv/bin/activate"
+
 # initialize metastore
 airflow db init
 
