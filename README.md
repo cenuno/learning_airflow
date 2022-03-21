@@ -19,9 +19,15 @@ To ensure you're setup correctly, please run the following command within the Te
 sh setup.sh
 ```
 
-### Move `AIRFLOW_HOME` to point elsewhere
+### Change `AIRFLOW_HOME` to point to this project directory
 
 `AIRFLOW_HOME` is the environment variable that points to the folder where your airflow pipelines live. By default, it's located at `~/airflow/` but we are changing it to point to `~/Documents/learning_airflow/airflow/`.
+
+#### Warning
+
+You may have `learning_airflow/` located elsewhere. Be sure to change the `AIRFLOW_HOME_CMD` variable in `setup.sh` to point to where it lives on your machine.
+
+For my machine, that's the Documents folder under the root directory.
 
 ### Use `venv` to recreate the virtual environment
 
