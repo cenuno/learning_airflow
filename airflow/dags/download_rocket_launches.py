@@ -5,13 +5,11 @@ Author:     Cristian Nuno
 """
 
 # load necessary packages
-import airflow
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 from datetime import (
     datetime,
-    timedelta,
 )
 import json
 import os
@@ -21,7 +19,7 @@ import requests.exceptions as requests_exceptions
 
 # parse the API response and download all rocket pictures
 def _get_pictures():
-    """Parse the space devs API resposne and download all rocket pictures
+    """Parse the space devs API response and download all rocket pictures
     
     All images will be placed into a temporary images/ dir
 
