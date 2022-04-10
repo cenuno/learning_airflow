@@ -18,7 +18,7 @@ To ensure you're setup correctly, please move your current working directory int
 
 Run the following bash command to:
 
-* modify your `.zshrc` file to modify the `AIRFLOW_HOME` environment variable; and
+* modify your `.zshrc` file to append the `AIRFLOW_HOME` environment variable at the bottom of the file; and
 * create your virtual environment 
 
 ```bash

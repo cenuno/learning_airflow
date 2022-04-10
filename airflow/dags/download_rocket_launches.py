@@ -83,7 +83,8 @@ get_pictures = PythonOperator(
 # notify user about how many rocket images there now are for viewing
 notify = BashOperator(
     task_id="notify",
-    bash_command='echo "There are now $(ls ~/Documents/learning_airflow/tmp/images/ | wc -l) images."',
+    bash_command='echo {{ macros.ds_add(ds, -3) }}',
+    #bash_command='echo "There are now $(ls ~/Documents/learning_airflow/tmp/images/ | wc -l) images."',
     dag=download_rocket_launches,
 )
 
