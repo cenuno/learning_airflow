@@ -12,16 +12,29 @@ This repo assumes you're running a Mac OS.
 
 This repo assumes you're using `zsh` as the default shell. [Read more here](https://www.theverge.com/2019/6/4/18651872/apple-macos-catalina-zsh-bash-shell-replacement-features).
 
-To ensure you're setup correctly, please run the following command within the Terminal after cloning the repository:
+To ensure you're setup correctly, please move your current working directory into this project directory after cloning the repository. You know you are good to go if you see `learning_airflow/` as the last folder after you type `pwd`.
+
+#### Run `sh setup.sh` to setup your `AIRFLOW_HOME` and virtual environment
+
+Run the following bash command to:
+
+* modify your `.zshrc` file to append the `AIRFLOW_HOME` environment variable at the bottom of the file; and
+* create your virtual environment 
 
 ```bash
 # setup your airflow home & virtual environment
 sh setup.sh
 ```
 
-### Move `AIRFLOW_HOME` to point elsewhere
+### Change `AIRFLOW_HOME` to point to this project directory
 
 `AIRFLOW_HOME` is the environment variable that points to the folder where your airflow pipelines live. By default, it's located at `~/airflow/` but we are changing it to point to `~/Documents/learning_airflow/airflow/`.
+
+#### Warning
+
+You may have `learning_airflow/` located elsewhere. Be sure to change the `AIRFLOW_HOME_CMD` variable in `setup.sh` to point to where it lives on your machine.
+
+For my machine, that's the Documents folder under the root directory.
 
 ### Use `venv` to recreate the virtual environment
 
