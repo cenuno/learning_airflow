@@ -18,22 +18,22 @@ def write_to_csv(templates_dict):
     # provide feedback about what function is doing
     logger = logging.getLogger(__name__)
 
-    logging.info("Extract the templated output path")
+    logger.info("Extract the templated output path")
     filename = templates_dict["filename"]
-    logging.info(f"The templatized filename is {filename}")
+    logger.info(f"The templatized filename is {filename}")
 
-    logging.info("Open the filename")
+    logger.info("Open the filename")
     with open(filename, mode='w') as csv_file:
-        logging.info("Create headers")
+        logger.info("Create headers")
         fieldnames = ['emp_name', 'dept', 'birth_month']
 
-        logging.info("Create csv writer object")
+        logger.info("Create csv writer object")
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
-        logging.info("Write the headers to the csv")
+        logger.info("Write the headers to the csv")
         writer.writeheader()
         
-        logging.info("Write two rows of data to the csv")
+        logger.info("Write two rows of data to the csv")
         writer.writerow({'emp_name': 'John Smith', 'dept': 'Accounting', 'birth_month': 'November'})
         writer.writerow({'emp_name': 'Erica Meyers', 'dept': 'IT', 'birth_month': 'March'})
 
@@ -65,7 +65,7 @@ for report_name, query in report_dict.items():
         task_id=f"{report_name}_write_to_csv",
         python_callable=write_to_csv,
         templates_dict={
-            "filename": "/airflow/dags/data/{report_name}_data_{ds}.csv".format(
+            "filename": "{report_name}_data_{ds}.csv".format(
                 report_name=report_name,
                 ds=r"{{ ds }}"
             )
