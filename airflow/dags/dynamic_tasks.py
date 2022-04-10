@@ -65,9 +65,9 @@ for report_name, query in report_dict.items():
         task_id=f"{report_name}_write_to_csv",
         python_callable=write_to_csv,
         templates_dict={
-            "filename": "{report_name}_data_{ds}".format(
+            "filename": "/airflow/dags/data/{report_name}_data_{ds}.csv".format(
                 report_name=report_name,
-                ds=r"{{ ds }}"#"{report_name}_data_{{ds}}.csv"
+                ds=r"{{ ds }}"
             )
         },
         dag=dynamic_tasks,
