@@ -13,13 +13,13 @@ from datetime import datetime
 import logging
 
 logging.info("create custom python function")
-def write_to_csv(templates_dict):
+def write_to_csv(**context):
     """Write data to a csv file"""
     # provide feedback about what function is doing
     logger = logging.getLogger(__name__)
 
     logger.info("Extract the templated output path")
-    filename = templates_dict["filename"]
+    filename = context["templates_dict"]["filename"]
     logger.info(f"The templatized filename is {filename}")
 
     logger.info("Open the filename")
@@ -42,8 +42,9 @@ logging.info("instantiate a DAG object")
 dynamic_tasks = DAG(
     dag_id="dynamic_tasks",
     # NOTE: modify this to your preference
-    start_date=datetime(2022, 4, 8),
-    schedule_interval=None,
+    start_date=datetime(2022, 4, 6),
+    # NOTE: run every day at midnight
+    schedule_interval="0 0 * * *",
 )
 
 logging.info("create start task")
@@ -67,9 +68,10 @@ for report_name, query in report_dict.items():
         templates_dict={
             "filename": "{report_name}_data_{ds}.csv".format(
                 report_name=report_name,
-                ds=r"{{ ds }}"
+                ds=r"{{ ds_nodash }}"
             )
         },
+        provide_context=True,
         dag=dynamic_tasks,
     )
 
