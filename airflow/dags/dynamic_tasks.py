@@ -65,7 +65,10 @@ for report_name, query in report_dict.items():
         task_id=f"{report_name}_write_to_csv",
         python_callable=write_to_csv,
         templates_dict={
-            "filename": f"{report_name}_data_{{ ds }}.csv"
+            "filename": "{report_name}_data_{ds}".format(
+                report_name=report_name,
+                ds=r"{{ ds }}"#"{report_name}_data_{{ds}}.csv"
+            )
         },
         dag=dynamic_tasks,
     )
